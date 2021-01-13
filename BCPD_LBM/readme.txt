@@ -70,4 +70,3 @@ The next step is to visualise the community architectures by BrainNet and Circos
 8. Launch bash circos_config_t.sh to draw the circos figure. 
 
 
-

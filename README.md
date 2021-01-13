@@ -2,7 +2,7 @@
 # If the time seires have been extracted, skip the Section 1 and go to the Section 2 & 3.
 #
 # Version 1.0 
-# 12-July-2020
+# 12-December-2020
 # Copyright (c) 2020, Lingbin Bian
 
 

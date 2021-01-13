@@ -1,0 +1,250 @@
+#!/bin/env perl
+
+=pod
+
+=head1 NAME
+
+makeimages - create images for each Circos tutorial in a set
+
+=head1 SYNOPSIS
+
+  makeimages
+
+=head1 DESCRIPTION
+
+A large number of tutorials are available for Circos, which explain and demonstrate all the features.
+
+  http://www.circos.ca/software/download/tutorials
+
+Tutorials are organized into sets, with each set covering different functionality. 
+
+This script generates the images for all the tutorials in a set. For example, to create images for tutorial set 2,
+
+  cd tutorials/2
+  ../makeimages
+
+=head1 OPTIONS
+
+None
+
+=head1 HISTORY
+
+=item * 3 Jan 2012
+
+Updated docs.
+
+=item * 25 Jul 2011
+
+First version.
+
+=back 
+
+=head1 AUTHOR
+
+Martin Krzywinski
+
+=head1 CONTACT
+
+Martin Krzywinski
+Genome Sciences Center
+BC Cancer Research Center
+100-570 W 7th Ave
+Vancouver BC V5Z 4S6
+
+mkweb.bcgsc.ca
+martink@bcgsc.ca
+
+=cut
+
+use strict;
+use warnings FATAL=>"all";
+
+use Carp;
+use Config::General;
+use Cwd qw(getcwd abs_path);
+use Data::Dumper;
+use File::Basename;
+use FindBin;
+use Getopt::Long;
+use Pod::Usage;
+use Storable;
+use lib "$FindBin::RealBin";
+use lib "$FindBin::RealBin/../lib";
+use lib "$FindBin::RealBin/lib";
+
+our (%OPT,%CONF,$conf);
+our @COMMAND_LINE = ("file=s",
+		     "configfile=s",
+		     "help",
+		     "man",
+		     "debug:i");
+our $VERSION = 0.01;
+
+# common and custom module imports below
+#use Regexp::Common;
+#use IO::File;
+#use List::Util;
+#use List::MoreUtils;
+#use Set::IntSpan;
+#use Statistics::Descriptive;
+
+# read and parse configuration file
+_parse_config();
+#_dump_config();
+
+opendir(DIR,".");
+my @dirs;
+while(my $item = readdir(DIR)) {
+    next if $item eq ".";
+    next if $item eq "..";
+    next unless -d $item;
+    next unless -e "$item/circos.conf";
+    push @dirs, $item;
+}
+close(DIR);
+
+if(! @dirs) {
+    printinfo("No tutorial subdirectories found under current directory.");
+    printinfo("Please run this script from a specific tutorial directory (e.g. from tutorials/2, not from tutorials/).");
+    printinfo();
+    printinfo("For example");
+    printinfo("> cd circos-tutorials-x.xx");
+    printinfo("> tutorials/2");
+    printinfo("> ../makeimages");
+}
+for my $dir (sort {$a <=> $b} @dirs) {
+    printinfo("Creating image from tutorial",$dir);
+    system("cd $dir;circos -conf ./circos.conf -debug_group timer,summary");
+}
+
+sub validateconfiguration {
+
+}
+
+# HOUSEKEEPING ###############################################################
+
+sub _dump_config {
+    printdumper(\%OPT,\%CONF);
+}
+
+sub _parse_config {
+  my $dump_debug_level = 3;
+  GetOptions(\%OPT,@COMMAND_LINE);
+  pod2usage() if $OPT{help};
+  pod2usage(-verbose=>2) if $OPT{man};
+  loadconfiguration($OPT{configfile});
+  populateconfiguration(); # copy command line options to config hash
+  validateconfiguration(); 
+  if(defined $CONF{debug} && $CONF{debug} == $dump_debug_level) {
+    $Data::Dumper::Indent    = 2;
+    $Data::Dumper::Quotekeys = 0;
+    $Data::Dumper::Terse     = 0;
+    $Data::Dumper::Sortkeys  = 1;
+    $Data::Dumper::Varname = "OPT";
+    printdumper(\%OPT);
+    $Data::Dumper::Varname = "CONF";
+    printdumper(\%CONF);
+    exit;
+  }
+}
+
+sub populateconfiguration {
+  for my $var (keys %OPT) {
+    $CONF{$var} = $OPT{$var};
+  }
+  repopulateconfiguration(\%CONF);
+}
+
+sub repopulateconfiguration {
+  my $root     = shift;
+  return unless ref($root) eq "HASH";
+  for my $key (keys %$root) {
+      my $value = $root->{$key};
+      if(ref($value) eq "HASH") {
+	  repopulateconfiguration($value);
+      } elsif (ref($value) eq "ARRAY") {
+	  for my $item (@$value) {
+	      repopulateconfiguration($item);
+	  }
+      } elsif(defined $value) {
+	  while($value =~ /__([^_].+?)__/g) {
+	      my $source = "__" . $1 . "__";
+	      my $target = eval $1;
+	      $value =~ s/\Q$source\E/$target/g;
+	  }
+	  $root->{$key} = $value;
+      }
+  }
+}
+
+################################################################
+#
+#
+
+sub loadconfiguration {
+  my $file = shift;
+  if(defined $file) {
+    if(-e $file && -r _) {
+      # provided configuration file exists and can be read
+      $file = abs_path($file);
+    } else {
+      confess "The configuration file [$file] passed with -configfile does not exist or cannot be read.";
+    }
+  } else {
+    # otherwise, try to automatically find a configuration file
+    my ($scriptname,$path,$suffix) = fileparse($0);
+    my $cwd     = getcwd();
+    my $bindir  = $FindBin::RealBin;
+    my $userdir = $ENV{HOME};
+    my @candidate_files = (
+	"$cwd/$scriptname.conf",
+	"$cwd/etc/$scriptname.conf",
+	"$cwd/../etc/$scriptname.conf",
+	"$bindir/$scriptname.conf",
+	"$bindir/etc/$scriptname.conf",
+	"$bindir/../etc/$scriptname.conf",
+	"$userdir/.$scriptname.conf",
+	);
+    my @additional_files = (
+	
+	);
+    for my $candidate_file (@additional_files,@candidate_files) {
+	#printinfo("configsearch",$candidate_file);
+	if(-e $candidate_file && -r _) {
+	    $file = $candidate_file;
+	    #printinfo("configfound",$candidate_file);
+	    last;
+	}
+    }
+  }
+  if(defined $file) {
+    $OPT{configfile} = $file;
+    $conf = new Config::General(
+	-ConfigFile=>$file,
+	-IncludeRelative=>1,
+	-IncludeAgain=>1,
+	-ExtendedAccess=>1,
+	-AllowMultiOptions=>"yes",
+	-LowerCaseNames=>1,
+	-AutoTrue=>1
+	);
+    %CONF = $conf->getall;
+  }
+}
+
+sub printdebug {
+    my ($level,@msg) = @_;
+    my $prefix = "debug";
+    if(defined $CONF{debug} && $CONF{debug} >= $level) {
+	printinfo(sprintf("%s[%d]",$prefix,$level),@msg);
+    }
+}
+
+sub printinfo {
+    print join(" ",@_),"\n";
+}
+
+sub printdumper {
+    print Dumper(@_);
+}
+

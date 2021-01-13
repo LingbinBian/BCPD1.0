@@ -1,0 +1,1252 @@
+
+# FEAT version number
+set fmri(version) 6.00
+
+# Are we in MELODIC?
+set fmri(inmelodic) 0
+
+# Analysis level
+# 1 : First-level analysis
+# 2 : Higher-level analysis
+set fmri(level) 2
+
+# Which stages to run
+# 0 : No first-level analysis (registration and/or group stats only)
+# 7 : Full first-level analysis
+# 1 : Pre-processing
+# 2 : Statistics
+set fmri(analysis) 2
+
+# Use relative filenames
+set fmri(relative_yn) 0
+
+# Balloon help
+set fmri(help_yn) 1
+
+# Run Featwatcher
+set fmri(featwatcher_yn) 1
+
+# Cleanup first-level standard-space images
+set fmri(sscleanup_yn) 0
+
+# Output directory
+set fmri(outputdir) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/tfMRI_3rd_Level"
+
+# TR(s)
+set fmri(tr) 3
+
+# Total volumes
+set fmri(npts) 100
+
+# Delete volumes
+set fmri(ndelete) 0
+
+# Perfusion tag/control order
+set fmri(tagfirst) 1
+
+# Number of first-level analyses
+set fmri(multiple) 100
+
+# Higher-level input type
+# 1 : Inputs are lower-level FEAT directories
+# 2 : Inputs are cope images from FEAT directories
+set fmri(inputtype) 2
+
+# Carry out pre-stats processing?
+set fmri(filtering_yn) 0
+
+# Brain/background threshold, %
+set fmri(brain_thresh) 10
+
+# Critical z for design efficiency calculation
+set fmri(critical_z) 5.3
+
+# Noise level
+set fmri(noise) 0.66
+
+# Noise AR(1)
+set fmri(noisear) 0.34
+
+# Motion correction
+# 0 : None
+# 1 : MCFLIRT
+set fmri(mc) 1
+
+# Spin-history (currently obsolete)
+set fmri(sh_yn) 0
+
+# B0 fieldmap unwarping?
+set fmri(regunwarp_yn) 0
+
+# GDC Test
+set fmri(gdc) ""
+
+# EPI dwell time (ms)
+set fmri(dwell) 0.0
+
+# EPI TE (ms)
+set fmri(te) 0.0
+
+# % Signal loss threshold
+set fmri(signallossthresh) 10
+
+# Unwarp direction
+set fmri(unwarp_dir) y-
+
+# Slice timing correction
+# 0 : None
+# 1 : Regular up (0, 1, 2, 3, ...)
+# 2 : Regular down
+# 3 : Use slice order file
+# 4 : Use slice timings file
+# 5 : Interleaved (0, 2, 4 ... 1, 3, 5 ... )
+set fmri(st) 0
+
+# Slice timings file
+set fmri(st_file) ""
+
+# BET brain extraction
+set fmri(bet_yn) 1
+
+# Spatial smoothing FWHM (mm)
+set fmri(smooth) 5
+
+# Intensity normalization
+set fmri(norm_yn) 0
+
+# Perfusion subtraction
+set fmri(perfsub_yn) 0
+
+# Highpass temporal filtering
+set fmri(temphp_yn) 1
+
+# Lowpass temporal filtering
+set fmri(templp_yn) 0
+
+# MELODIC ICA data exploration
+set fmri(melodic_yn) 0
+
+# Carry out main stats?
+set fmri(stats_yn) 1
+
+# Carry out prewhitening?
+set fmri(prewhiten_yn) 1
+
+# Add motion parameters to model
+# 0 : No
+# 1 : Yes
+set fmri(motionevs) 0
+set fmri(motionevsbeta) ""
+set fmri(scriptevsbeta) ""
+
+# Robust outlier detection in FLAME?
+set fmri(robust_yn) 0
+
+# Higher-level modelling
+# 3 : Fixed effects
+# 0 : Mixed Effects: Simple OLS
+# 2 : Mixed Effects: FLAME 1
+# 1 : Mixed Effects: FLAME 1+2
+set fmri(mixed_yn) 2
+
+# Higher-level permutations
+set fmri(randomisePermutations) 5000
+
+# Number of EVs
+set fmri(evs_orig) 1
+set fmri(evs_real) 1
+set fmri(evs_vox) 0
+
+# Number of contrasts
+set fmri(ncon_orig) 1
+set fmri(ncon_real) 1
+
+# Number of F-tests
+set fmri(nftests_orig) 0
+set fmri(nftests_real) 0
+
+# Add constant column to design matrix? (obsolete)
+set fmri(constcol) 0
+
+# Carry out post-stats steps?
+set fmri(poststats_yn) 0
+
+# Pre-threshold masking?
+set fmri(threshmask) ""
+
+# Thresholding
+# 0 : None
+# 1 : Uncorrected
+# 2 : Voxel
+# 3 : Cluster
+set fmri(thresh) 3
+
+# P threshold
+set fmri(prob_thresh) 0.05
+
+# Z threshold
+set fmri(z_thresh) 3.1
+
+# Z min/max for colour rendering
+# 0 : Use actual Z min/max
+# 1 : Use preset Z min/max
+set fmri(zdisplay) 0
+
+# Z min in colour rendering
+set fmri(zmin) 2
+
+# Z max in colour rendering
+set fmri(zmax) 8
+
+# Colour rendering type
+# 0 : Solid blobs
+# 1 : Transparent blobs
+set fmri(rendertype) 1
+
+# Background image for higher-level stats overlays
+# 1 : Mean highres
+# 2 : First highres
+# 3 : Mean functional
+# 4 : First functional
+# 5 : Standard space template
+set fmri(bgimage) 1
+
+# Create time series plots
+set fmri(tsplot_yn) 1
+
+# Registration to initial structural
+set fmri(reginitial_highres_yn) 0
+
+# Search space for registration to initial structural
+# 0   : No search
+# 90  : Normal search
+# 180 : Full search
+set fmri(reginitial_highres_search) 90
+
+# Degrees of Freedom for registration to initial structural
+set fmri(reginitial_highres_dof) 3
+
+# Registration to main structural
+set fmri(reghighres_yn) 0
+
+# Search space for registration to main structural
+# 0   : No search
+# 90  : Normal search
+# 180 : Full search
+set fmri(reghighres_search) 90
+
+# Degrees of Freedom for registration to main structural
+set fmri(reghighres_dof) BBR
+
+# Registration to standard image?
+set fmri(regstandard_yn) 1
+
+# Use alternate reference images?
+set fmri(alternateReference_yn) 0
+
+# Standard image
+set fmri(regstandard) "/usr/local/fsl/data/standard/MNI152_T1_2mm_brain"
+
+# Search space for registration to standard space
+# 0   : No search
+# 90  : Normal search
+# 180 : Full search
+set fmri(regstandard_search) 90
+
+# Degrees of Freedom for registration to standard space
+set fmri(regstandard_dof) 12
+
+# Do nonlinear registration from structural to standard space?
+set fmri(regstandard_nonlinear_yn) 0
+
+# Control nonlinear warp field resolution
+set fmri(regstandard_nonlinear_warpres) 10 
+
+# High pass filter cutoff
+set fmri(paradigm_hp) 100
+
+# Number of lower-level copes feeding into higher-level analysis
+set fmri(ncopeinputs) 0
+
+# 4D AVW data or FEAT directory (1)
+set feat_files(1) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/100307/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (2)
+set feat_files(2) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/100408/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (3)
+set feat_files(3) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/101107/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (4)
+set feat_files(4) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/101309/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (5)
+set feat_files(5) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/101915/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (6)
+set feat_files(6) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/103111/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (7)
+set feat_files(7) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/103414/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (8)
+set feat_files(8) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/103818/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (9)
+set feat_files(9) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/105014/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (10)
+set feat_files(10) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/105115/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (11)
+set feat_files(11) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/106016/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (12)
+set feat_files(12) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/108828/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (13)
+set feat_files(13) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/110411/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (14)
+set feat_files(14) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/111312/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (15)
+set feat_files(15) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/111716/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (16)
+set feat_files(16) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/113619/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (17)
+set feat_files(17) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/113922/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (18)
+set feat_files(18) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/114419/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (19)
+set feat_files(19) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/115320/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (20)
+set feat_files(20) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/116524/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (21)
+set feat_files(21) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/117122/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (22)
+set feat_files(22) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/118528/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (23)
+set feat_files(23) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/118730/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (24)
+set feat_files(24) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/118932/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (25)
+set feat_files(25) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/120111/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (26)
+set feat_files(26) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/122317/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (27)
+set feat_files(27) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/122620/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (28)
+set feat_files(28) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/123117/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (29)
+set feat_files(29) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/123925/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (30)
+set feat_files(30) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/124422/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (31)
+set feat_files(31) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/125525/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (32)
+set feat_files(32) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/126325/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (33)
+set feat_files(33) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/127630/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (34)
+set feat_files(34) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/127933/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (35)
+set feat_files(35) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/128127/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (36)
+set feat_files(36) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/128632/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (37)
+set feat_files(37) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/129028/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (38)
+set feat_files(38) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/130013/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (39)
+set feat_files(39) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/130316/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (40)
+set feat_files(40) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/131217/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (41)
+set feat_files(41) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/131722/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (42)
+set feat_files(42) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/133019/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (43)
+set feat_files(43) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/133928/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (44)
+set feat_files(44) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/135225/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (45)
+set feat_files(45) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/135932/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (46)
+set feat_files(46) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/136833/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (47)
+set feat_files(47) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/138534/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (48)
+set feat_files(48) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/139637/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (49)
+set feat_files(49) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/140925/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (50)
+set feat_files(50) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/144832/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (51)
+set feat_files(51) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/146432/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (52)
+set feat_files(52) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/147737/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (53)
+set feat_files(53) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/148335/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (54)
+set feat_files(54) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/148840/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (55)
+set feat_files(55) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/149337/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (56)
+set feat_files(56) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/149539/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (57)
+set feat_files(57) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/149741/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (58)
+set feat_files(58) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/151223/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (59)
+set feat_files(59) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/151526/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (60)
+set feat_files(60) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/151627/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (61)
+set feat_files(61) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/153025/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (62)
+set feat_files(62) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/154734/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (63)
+set feat_files(63) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/156637/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (64)
+set feat_files(64) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/159340/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (65)
+set feat_files(65) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/160123/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (66)
+set feat_files(66) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/161731/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (67)
+set feat_files(67) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/162733/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (68)
+set feat_files(68) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/163129/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (69)
+set feat_files(69) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/176542/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (70)
+set feat_files(70) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/178950/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (71)
+set feat_files(71) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/188347/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (72)
+set feat_files(72) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/189450/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (73)
+set feat_files(73) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/190031/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (74)
+set feat_files(74) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/192540/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (75)
+set feat_files(75) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/196750/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (76)
+set feat_files(76) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/198451/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (77)
+set feat_files(77) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/199655/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (78)
+set feat_files(78) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/201111/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (79)
+set feat_files(79) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/208226/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (80)
+set feat_files(80) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/211417/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (81)
+set feat_files(81) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/211720/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (82)
+set feat_files(82) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/212318/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (83)
+set feat_files(83) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/214423/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (84)
+set feat_files(84) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/221319/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (85)
+set feat_files(85) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/239944/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (86)
+set feat_files(86) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/245333/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (87)
+set feat_files(87) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/280739/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (88)
+set feat_files(88) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/298051/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (89)
+set feat_files(89) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/366446/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (90)
+set feat_files(90) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/397760/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (91)
+set feat_files(91) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/414229/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (92)
+set feat_files(92) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/499566/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (93)
+set feat_files(93) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/654754/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (94)
+set feat_files(94) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/672756/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (95)
+set feat_files(95) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/751348/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (96)
+set feat_files(96) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/756055/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (97)
+set feat_files(97) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/792564/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (98)
+set feat_files(98) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/856766/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (99)
+set feat_files(99) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/857263/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# 4D AVW data or FEAT directory (100)
+set feat_files(100) "/Users/lingbinbian/Downloads/tfMRI_Data_HCP/subjects/899885/MNINonLinear/Results/tfMRI_WM/2nd_level.gfeat/cope11.feat/stats/cope1.nii.gz"
+
+# Add confound EVs text file
+set fmri(confoundevs) 0
+
+# EV 1 title
+set fmri(evtitle1) ""
+
+# Basic waveform shape (EV 1)
+# 0 : Square
+# 1 : Sinusoid
+# 2 : Custom (1 entry per volume)
+# 3 : Custom (3 column format)
+# 4 : Interaction
+# 10 : Empty (all zeros)
+set fmri(shape1) 2
+
+# Convolution (EV 1)
+# 0 : None
+# 1 : Gaussian
+# 2 : Gamma
+# 3 : Double-Gamma HRF
+# 4 : Gamma basis functions
+# 5 : Sine basis functions
+# 6 : FIR basis functions
+# 8 : Alternate Double-Gamma
+set fmri(convolve1) 0
+
+# Convolve phase (EV 1)
+set fmri(convolve_phase1) 0
+
+# Apply temporal filtering (EV 1)
+set fmri(tempfilt_yn1) 0
+
+# Add temporal derivative (EV 1)
+set fmri(deriv_yn1) 0
+
+# Custom EV file (EV 1)
+set fmri(custom1) "dummy"
+
+# Orthogonalise EV 1 wrt EV 0
+set fmri(ortho1.0) 0
+
+# Orthogonalise EV 1 wrt EV 1
+set fmri(ortho1.1) 0
+
+# Higher-level EV value for EV 1 and input 1
+set fmri(evg1.1) 1
+
+# Higher-level EV value for EV 1 and input 2
+set fmri(evg2.1) 1
+
+# Higher-level EV value for EV 1 and input 3
+set fmri(evg3.1) 1
+
+# Higher-level EV value for EV 1 and input 4
+set fmri(evg4.1) 1
+
+# Higher-level EV value for EV 1 and input 5
+set fmri(evg5.1) 1
+
+# Higher-level EV value for EV 1 and input 6
+set fmri(evg6.1) 1
+
+# Higher-level EV value for EV 1 and input 7
+set fmri(evg7.1) 1
+
+# Higher-level EV value for EV 1 and input 8
+set fmri(evg8.1) 1
+
+# Higher-level EV value for EV 1 and input 9
+set fmri(evg9.1) 1
+
+# Higher-level EV value for EV 1 and input 10
+set fmri(evg10.1) 1
+
+# Higher-level EV value for EV 1 and input 11
+set fmri(evg11.1) 1
+
+# Higher-level EV value for EV 1 and input 12
+set fmri(evg12.1) 1
+
+# Higher-level EV value for EV 1 and input 13
+set fmri(evg13.1) 1
+
+# Higher-level EV value for EV 1 and input 14
+set fmri(evg14.1) 1
+
+# Higher-level EV value for EV 1 and input 15
+set fmri(evg15.1) 1
+
+# Higher-level EV value for EV 1 and input 16
+set fmri(evg16.1) 1
+
+# Higher-level EV value for EV 1 and input 17
+set fmri(evg17.1) 1
+
+# Higher-level EV value for EV 1 and input 18
+set fmri(evg18.1) 1
+
+# Higher-level EV value for EV 1 and input 19
+set fmri(evg19.1) 1
+
+# Higher-level EV value for EV 1 and input 20
+set fmri(evg20.1) 1
+
+# Higher-level EV value for EV 1 and input 21
+set fmri(evg21.1) 1
+
+# Higher-level EV value for EV 1 and input 22
+set fmri(evg22.1) 1
+
+# Higher-level EV value for EV 1 and input 23
+set fmri(evg23.1) 1
+
+# Higher-level EV value for EV 1 and input 24
+set fmri(evg24.1) 1
+
+# Higher-level EV value for EV 1 and input 25
+set fmri(evg25.1) 1
+
+# Higher-level EV value for EV 1 and input 26
+set fmri(evg26.1) 1
+
+# Higher-level EV value for EV 1 and input 27
+set fmri(evg27.1) 1
+
+# Higher-level EV value for EV 1 and input 28
+set fmri(evg28.1) 1
+
+# Higher-level EV value for EV 1 and input 29
+set fmri(evg29.1) 1
+
+# Higher-level EV value for EV 1 and input 30
+set fmri(evg30.1) 1
+
+# Higher-level EV value for EV 1 and input 31
+set fmri(evg31.1) 1
+
+# Higher-level EV value for EV 1 and input 32
+set fmri(evg32.1) 1
+
+# Higher-level EV value for EV 1 and input 33
+set fmri(evg33.1) 1
+
+# Higher-level EV value for EV 1 and input 34
+set fmri(evg34.1) 1
+
+# Higher-level EV value for EV 1 and input 35
+set fmri(evg35.1) 1
+
+# Higher-level EV value for EV 1 and input 36
+set fmri(evg36.1) 1
+
+# Higher-level EV value for EV 1 and input 37
+set fmri(evg37.1) 1
+
+# Higher-level EV value for EV 1 and input 38
+set fmri(evg38.1) 1
+
+# Higher-level EV value for EV 1 and input 39
+set fmri(evg39.1) 1
+
+# Higher-level EV value for EV 1 and input 40
+set fmri(evg40.1) 1
+
+# Higher-level EV value for EV 1 and input 41
+set fmri(evg41.1) 1
+
+# Higher-level EV value for EV 1 and input 42
+set fmri(evg42.1) 1
+
+# Higher-level EV value for EV 1 and input 43
+set fmri(evg43.1) 1
+
+# Higher-level EV value for EV 1 and input 44
+set fmri(evg44.1) 1
+
+# Higher-level EV value for EV 1 and input 45
+set fmri(evg45.1) 1
+
+# Higher-level EV value for EV 1 and input 46
+set fmri(evg46.1) 1
+
+# Higher-level EV value for EV 1 and input 47
+set fmri(evg47.1) 1
+
+# Higher-level EV value for EV 1 and input 48
+set fmri(evg48.1) 1
+
+# Higher-level EV value for EV 1 and input 49
+set fmri(evg49.1) 1
+
+# Higher-level EV value for EV 1 and input 50
+set fmri(evg50.1) 1
+
+# Higher-level EV value for EV 1 and input 51
+set fmri(evg51.1) 1
+
+# Higher-level EV value for EV 1 and input 52
+set fmri(evg52.1) 1
+
+# Higher-level EV value for EV 1 and input 53
+set fmri(evg53.1) 1
+
+# Higher-level EV value for EV 1 and input 54
+set fmri(evg54.1) 1
+
+# Higher-level EV value for EV 1 and input 55
+set fmri(evg55.1) 1
+
+# Higher-level EV value for EV 1 and input 56
+set fmri(evg56.1) 1
+
+# Higher-level EV value for EV 1 and input 57
+set fmri(evg57.1) 1
+
+# Higher-level EV value for EV 1 and input 58
+set fmri(evg58.1) 1
+
+# Higher-level EV value for EV 1 and input 59
+set fmri(evg59.1) 1
+
+# Higher-level EV value for EV 1 and input 60
+set fmri(evg60.1) 1
+
+# Higher-level EV value for EV 1 and input 61
+set fmri(evg61.1) 1
+
+# Higher-level EV value for EV 1 and input 62
+set fmri(evg62.1) 1
+
+# Higher-level EV value for EV 1 and input 63
+set fmri(evg63.1) 1
+
+# Higher-level EV value for EV 1 and input 64
+set fmri(evg64.1) 1
+
+# Higher-level EV value for EV 1 and input 65
+set fmri(evg65.1) 1
+
+# Higher-level EV value for EV 1 and input 66
+set fmri(evg66.1) 1
+
+# Higher-level EV value for EV 1 and input 67
+set fmri(evg67.1) 1
+
+# Higher-level EV value for EV 1 and input 68
+set fmri(evg68.1) 1
+
+# Higher-level EV value for EV 1 and input 69
+set fmri(evg69.1) 1
+
+# Higher-level EV value for EV 1 and input 70
+set fmri(evg70.1) 1
+
+# Higher-level EV value for EV 1 and input 71
+set fmri(evg71.1) 1
+
+# Higher-level EV value for EV 1 and input 72
+set fmri(evg72.1) 1
+
+# Higher-level EV value for EV 1 and input 73
+set fmri(evg73.1) 1
+
+# Higher-level EV value for EV 1 and input 74
+set fmri(evg74.1) 1
+
+# Higher-level EV value for EV 1 and input 75
+set fmri(evg75.1) 1
+
+# Higher-level EV value for EV 1 and input 76
+set fmri(evg76.1) 1
+
+# Higher-level EV value for EV 1 and input 77
+set fmri(evg77.1) 1
+
+# Higher-level EV value for EV 1 and input 78
+set fmri(evg78.1) 1
+
+# Higher-level EV value for EV 1 and input 79
+set fmri(evg79.1) 1
+
+# Higher-level EV value for EV 1 and input 80
+set fmri(evg80.1) 1
+
+# Higher-level EV value for EV 1 and input 81
+set fmri(evg81.1) 1
+
+# Higher-level EV value for EV 1 and input 82
+set fmri(evg82.1) 1
+
+# Higher-level EV value for EV 1 and input 83
+set fmri(evg83.1) 1
+
+# Higher-level EV value for EV 1 and input 84
+set fmri(evg84.1) 1
+
+# Higher-level EV value for EV 1 and input 85
+set fmri(evg85.1) 1
+
+# Higher-level EV value for EV 1 and input 86
+set fmri(evg86.1) 1
+
+# Higher-level EV value for EV 1 and input 87
+set fmri(evg87.1) 1
+
+# Higher-level EV value for EV 1 and input 88
+set fmri(evg88.1) 1
+
+# Higher-level EV value for EV 1 and input 89
+set fmri(evg89.1) 1
+
+# Higher-level EV value for EV 1 and input 90
+set fmri(evg90.1) 1
+
+# Higher-level EV value for EV 1 and input 91
+set fmri(evg91.1) 1
+
+# Higher-level EV value for EV 1 and input 92
+set fmri(evg92.1) 1
+
+# Higher-level EV value for EV 1 and input 93
+set fmri(evg93.1) 1
+
+# Higher-level EV value for EV 1 and input 94
+set fmri(evg94.1) 1
+
+# Higher-level EV value for EV 1 and input 95
+set fmri(evg95.1) 1
+
+# Higher-level EV value for EV 1 and input 96
+set fmri(evg96.1) 1
+
+# Higher-level EV value for EV 1 and input 97
+set fmri(evg97.1) 1
+
+# Higher-level EV value for EV 1 and input 98
+set fmri(evg98.1) 1
+
+# Higher-level EV value for EV 1 and input 99
+set fmri(evg99.1) 1
+
+# Higher-level EV value for EV 1 and input 100
+set fmri(evg100.1) 1
+
+# Group membership for input 1
+set fmri(groupmem.1) 1
+
+# Group membership for input 2
+set fmri(groupmem.2) 1
+
+# Group membership for input 3
+set fmri(groupmem.3) 1
+
+# Group membership for input 4
+set fmri(groupmem.4) 1
+
+# Group membership for input 5
+set fmri(groupmem.5) 1
+
+# Group membership for input 6
+set fmri(groupmem.6) 1
+
+# Group membership for input 7
+set fmri(groupmem.7) 1
+
+# Group membership for input 8
+set fmri(groupmem.8) 1
+
+# Group membership for input 9
+set fmri(groupmem.9) 1
+
+# Group membership for input 10
+set fmri(groupmem.10) 1
+
+# Group membership for input 11
+set fmri(groupmem.11) 1
+
+# Group membership for input 12
+set fmri(groupmem.12) 1
+
+# Group membership for input 13
+set fmri(groupmem.13) 1
+
+# Group membership for input 14
+set fmri(groupmem.14) 1
+
+# Group membership for input 15
+set fmri(groupmem.15) 1
+
+# Group membership for input 16
+set fmri(groupmem.16) 1
+
+# Group membership for input 17
+set fmri(groupmem.17) 1
+
+# Group membership for input 18
+set fmri(groupmem.18) 1
+
+# Group membership for input 19
+set fmri(groupmem.19) 1
+
+# Group membership for input 20
+set fmri(groupmem.20) 1
+
+# Group membership for input 21
+set fmri(groupmem.21) 1
+
+# Group membership for input 22
+set fmri(groupmem.22) 1
+
+# Group membership for input 23
+set fmri(groupmem.23) 1
+
+# Group membership for input 24
+set fmri(groupmem.24) 1
+
+# Group membership for input 25
+set fmri(groupmem.25) 1
+
+# Group membership for input 26
+set fmri(groupmem.26) 1
+
+# Group membership for input 27
+set fmri(groupmem.27) 1
+
+# Group membership for input 28
+set fmri(groupmem.28) 1
+
+# Group membership for input 29
+set fmri(groupmem.29) 1
+
+# Group membership for input 30
+set fmri(groupmem.30) 1
+
+# Group membership for input 31
+set fmri(groupmem.31) 1
+
+# Group membership for input 32
+set fmri(groupmem.32) 1
+
+# Group membership for input 33
+set fmri(groupmem.33) 1
+
+# Group membership for input 34
+set fmri(groupmem.34) 1
+
+# Group membership for input 35
+set fmri(groupmem.35) 1
+
+# Group membership for input 36
+set fmri(groupmem.36) 1
+
+# Group membership for input 37
+set fmri(groupmem.37) 1
+
+# Group membership for input 38
+set fmri(groupmem.38) 1
+
+# Group membership for input 39
+set fmri(groupmem.39) 1
+
+# Group membership for input 40
+set fmri(groupmem.40) 1
+
+# Group membership for input 41
+set fmri(groupmem.41) 1
+
+# Group membership for input 42
+set fmri(groupmem.42) 1
+
+# Group membership for input 43
+set fmri(groupmem.43) 1
+
+# Group membership for input 44
+set fmri(groupmem.44) 1
+
+# Group membership for input 45
+set fmri(groupmem.45) 1
+
+# Group membership for input 46
+set fmri(groupmem.46) 1
+
+# Group membership for input 47
+set fmri(groupmem.47) 1
+
+# Group membership for input 48
+set fmri(groupmem.48) 1
+
+# Group membership for input 49
+set fmri(groupmem.49) 1
+
+# Group membership for input 50
+set fmri(groupmem.50) 1
+
+# Group membership for input 51
+set fmri(groupmem.51) 1
+
+# Group membership for input 52
+set fmri(groupmem.52) 1
+
+# Group membership for input 53
+set fmri(groupmem.53) 1
+
+# Group membership for input 54
+set fmri(groupmem.54) 1
+
+# Group membership for input 55
+set fmri(groupmem.55) 1
+
+# Group membership for input 56
+set fmri(groupmem.56) 1
+
+# Group membership for input 57
+set fmri(groupmem.57) 1
+
+# Group membership for input 58
+set fmri(groupmem.58) 1
+
+# Group membership for input 59
+set fmri(groupmem.59) 1
+
+# Group membership for input 60
+set fmri(groupmem.60) 1
+
+# Group membership for input 61
+set fmri(groupmem.61) 1
+
+# Group membership for input 62
+set fmri(groupmem.62) 1
+
+# Group membership for input 63
+set fmri(groupmem.63) 1
+
+# Group membership for input 64
+set fmri(groupmem.64) 1
+
+# Group membership for input 65
+set fmri(groupmem.65) 1
+
+# Group membership for input 66
+set fmri(groupmem.66) 1
+
+# Group membership for input 67
+set fmri(groupmem.67) 1
+
+# Group membership for input 68
+set fmri(groupmem.68) 1
+
+# Group membership for input 69
+set fmri(groupmem.69) 1
+
+# Group membership for input 70
+set fmri(groupmem.70) 1
+
+# Group membership for input 71
+set fmri(groupmem.71) 1
+
+# Group membership for input 72
+set fmri(groupmem.72) 1
+
+# Group membership for input 73
+set fmri(groupmem.73) 1
+
+# Group membership for input 74
+set fmri(groupmem.74) 1
+
+# Group membership for input 75
+set fmri(groupmem.75) 1
+
+# Group membership for input 76
+set fmri(groupmem.76) 1
+
+# Group membership for input 77
+set fmri(groupmem.77) 1
+
+# Group membership for input 78
+set fmri(groupmem.78) 1
+
+# Group membership for input 79
+set fmri(groupmem.79) 1
+
+# Group membership for input 80
+set fmri(groupmem.80) 1
+
+# Group membership for input 81
+set fmri(groupmem.81) 1
+
+# Group membership for input 82
+set fmri(groupmem.82) 1
+
+# Group membership for input 83
+set fmri(groupmem.83) 1
+
+# Group membership for input 84
+set fmri(groupmem.84) 1
+
+# Group membership for input 85
+set fmri(groupmem.85) 1
+
+# Group membership for input 86
+set fmri(groupmem.86) 1
+
+# Group membership for input 87
+set fmri(groupmem.87) 1
+
+# Group membership for input 88
+set fmri(groupmem.88) 1
+
+# Group membership for input 89
+set fmri(groupmem.89) 1
+
+# Group membership for input 90
+set fmri(groupmem.90) 1
+
+# Group membership for input 91
+set fmri(groupmem.91) 1
+
+# Group membership for input 92
+set fmri(groupmem.92) 1
+
+# Group membership for input 93
+set fmri(groupmem.93) 1
+
+# Group membership for input 94
+set fmri(groupmem.94) 1
+
+# Group membership for input 95
+set fmri(groupmem.95) 1
+
+# Group membership for input 96
+set fmri(groupmem.96) 1
+
+# Group membership for input 97
+set fmri(groupmem.97) 1
+
+# Group membership for input 98
+set fmri(groupmem.98) 1
+
+# Group membership for input 99
+set fmri(groupmem.99) 1
+
+# Group membership for input 100
+set fmri(groupmem.100) 1
+
+# Contrast & F-tests mode
+# real : control real EVs
+# orig : control original EVs
+set fmri(con_mode_old) real
+set fmri(con_mode) real
+
+# Display images for contrast_real 1
+set fmri(conpic_real.1) 1
+
+# Title for contrast_real 1
+set fmri(conname_real.1) "group mean"
+
+# Real contrast_real vector 1 element 1
+set fmri(con_real1.1) 1
+
+# Contrast masking - use >0 instead of thresholding?
+set fmri(conmask_zerothresh_yn) 0
+
+# Do contrast masking at all?
+set fmri(conmask1_1) 0
+
+##########################################################
+# Now options that don't appear in the GUI
+
+# Alternative (to BETting) mask image
+set fmri(alternative_mask) ""
+
+# Initial structural space registration initialisation transform
+set fmri(init_initial_highres) ""
+
+# Structural space registration initialisation transform
+set fmri(init_highres) ""
+
+# Standard space registration initialisation transform
+set fmri(init_standard) ""
+
+# For full FEAT analysis: overwrite existing .feat output dir?
+set fmri(overwrite_yn) 0

@@ -2,11 +2,11 @@
 # If the time seires have been extracted, skip the Section 1 and go to the Section 2 & 3.
 #
 # Version 1.0 
-# 12-July-2020
+# 12-December-2020
 # Copyright (c) 2020, Lingbin Bian
 
 
-# Section 1: Data set downloading and GLM analysis
+# Section 1: Data set download and GLM analysis
 
 1. Create an empty folder named 'tfMRI_Data_HCP' under a local directory. 
    Under the directory 'tfMRI_Data_HCP': (1) Download the preprocessed working memory tfMRI data from: https://www.humanconnectome.org/.

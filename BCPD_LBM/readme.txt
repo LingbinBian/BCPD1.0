@@ -58,7 +58,7 @@
 
 3. Launch DEMO_local_infer.m to visulize the results.
 
-The next step is to visualise the community architectures by BrainNet and Circos
+The next step is to visualise the community structure by BrainNet Viewer and Circos
 4. Launch DEMO_brainnet_viewer.m in the package to visualise the brain states by BrainNet Viewer. 
 
 5. Empty the files in '\Local_inference_real\circos_brain_network'.

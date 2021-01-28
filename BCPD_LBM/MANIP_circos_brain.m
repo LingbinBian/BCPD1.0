@@ -1,4 +1,4 @@
-% This script creats the data files needed for circos.
+% This script creates the data files needed for circos.
 
 % node.txt
 % edge.txt

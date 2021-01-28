@@ -4,7 +4,7 @@
 % 7-Jun-2020
 % Copyright (c) 2020, Lingbin Bian
 
-session_n=1;
+session_n=2;
 if session_n==1
    cd 'Local_inference_real_LR'
 end
@@ -12,7 +12,7 @@ if session_n==2
    cd 'Local_inference_real_RL'
 end
 load('localinference_real.mat');
-spar_level=10;
+spar_level=30;
 
 for t=1:L_localmin   
     Node_ROI=dlmread(['sparsity_',num2str(spar_level),'/Node_ROI_t',num2str(localmin_t(t)),'.node']);

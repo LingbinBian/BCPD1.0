@@ -3,7 +3,7 @@
 % Set up parameters:
 % W: half of window size
 % n_s: standard deviation of noise with respect to SNR
-% localmin_t: a vector of time points corresponding to local minima
+% local_t: a vector of time points corresponding to local minima or maxima
 % K_min: a vector of model selection
 %
 %
@@ -23,14 +23,14 @@ if datatype==1
     
     subjects=load('subject.txt');
     if session_n==1
-  %  localmin_t=[41,76,107,140,175,207,238,278,306,333,375];
-        localmin_t=[41,76,107,140,175,206,239,278,306,334,375];
+  %  local_t=[41,76,107,140,175,207,238,278,306,333,375];
+        local_t=[41,76,107,140,175,206,239,278,306,334,375];
     end
     if session_n==2
         load('Local_inference_real_LR/label_real.mat')       
         grouplabel_LR=esti_grouplabel;
        
-        localmin_t=[41,77,99,139,175,209,236,275,305,334,376];
+        local_t=[41,77,99,139,175,209,236,275,305,334,376];
     end
    % K_min=[7,7,7,7,7,7,7,7,7,7,7];  % model selection
     K_min=[6,6,6,6,6,6,6,6,6,6,6];  % model selection
@@ -41,9 +41,9 @@ if datatype==1
 elseif datatype==0
     subjects=load('synthetic_id.txt');    
     n_s=0.3162;  % sigma of noise 
-      localmin_t=[36,67,91,116,147]; % n_s: 0.3162 (SNR=10dB)
-    %  localmin_t=[36,66,91,116,146]; % n_s: 0.5623 (SNR=5dB)
-    %  localmin_t=[36,66,92,116,146]; % n_s: 1 (SNR=0dB)    
+      local_t=[36,67,91,116,147]; % n_s: 0.3162 (SNR=10dB)
+    %  local_t=[36,66,91,116,146]; % n_s: 0.5623 (SNR=5dB)
+    %  local_t=[36,66,92,116,146]; % n_s: 1 (SNR=0dB)    
     K_min=[4,5,3,4,4];  % model selection
     W=10;    
     session_n=' ';
@@ -52,7 +52,7 @@ end
 N_subj=100;
 N=35;
 S=200;
-L_localmin=length(localmin_t);
+L_localmin=length(local_t);
 
 group_adj=cell(N_subj,1); % group of adjacency matrix
 grouplabel=cell(1,L_localmin);  % group of latent labels
@@ -67,7 +67,7 @@ vector_compare=zeros(N,2);
 for s=1:N_subj
     fprintf('Adjacency of subject: %d\n',s)
     subid=num2str(subjects(s));
-    [group_adj{s,1},true_latent,K_seg]=local_adj(datatype,subid,session_n,n_s,localmin_t,K_min,W);
+    [group_adj{s,1},true_latent,K_seg]=local_adj(datatype,subid,session_n,n_s,local_t,K_min,W);
 end
 
 adj_mean=zeros(N_subj,1);
@@ -124,7 +124,7 @@ end
 
 % Estimate the model parameters, mean and variance
 
-[esti_groupmean,esti_groupvariance]=local_para(esti_grouplabel,ave_adj,localmin_t,K_min,S);
+[esti_groupmean,esti_groupvariance]=local_para(esti_grouplabel,ave_adj,local_t,K_min,S);
 
 % Visualization: estimation of latent label vector
 if datatype==1 

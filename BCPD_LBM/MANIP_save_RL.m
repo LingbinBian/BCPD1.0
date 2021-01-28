@@ -58,8 +58,8 @@ cd ..
 
 close all
 
-sp_level='sparsity_10';
-cd 'Local_inference_real_RL/sparsity_10'
+sp_level='sparsity_30';
+cd 'Local_inference_real_RL/sparsity_30'
 
 open('network_t41.fig')
 saveas(gcf,['../',pic_path,sp_level,'/','network_t41.jpeg'])

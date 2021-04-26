@@ -1,13 +1,12 @@
 function [esti_blockmean,esti_blockvariance]=local_para(esti_grouplabel,adj,localmin_t,K_min,S)
+
 % This function estimates block mean and variance.
 % 
 % Input: esti_grouplabel: group estimation of labels
-%        datatype: 1 real, 2 synthetic 
-%        subj: subject ID
-%        session_n: 1: LR, 2 RL (only for real data)
+%        adj: averaged adjacency matrix
 %        localmin_t: a vector of time points with respect to local minima
 %        K_min: a vector containing number of communities of states
-%        W: half of window size
+%        S: replication number, simulation number
 % Output: esti_blockmean: estimation of block mean, average of mean
 %         esti_variance: estimation of block variance, average of variance
 %

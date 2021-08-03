@@ -1,4 +1,4 @@
-function [adj,true_latent,K_seg]=local_adj(datatype,subj,session_n,n_s,localmin_t,K_min,W)
+function [adj,true_latent,K_seg]=local_adj(datatype,subj,session_n,n_s,localmin_t,K_min,W,vari,hrf_ind)
 % This function calculates the local adjacency matrice of single subject.
 % 
 % Input: datatype: 1 real, 2 synthetic 
@@ -21,7 +21,7 @@ if datatype==1
     true_latent='none';
     K_seg=K_min;
 elseif datatype==0
-    [Timeseries,latent_seg,K_seg]=load_simults(subj,n_s);
+    [Timeseries,latent_seg,K_seg]=load_simults(subj,n_s,vari,hrf_ind);
     true_latent=latent_seg;
 end
 

@@ -1,5 +1,5 @@
 # This is a pipeline for tfMRI GLM analysis (FSL, shell), Bayesian change-point detection and brain state estimation (MATLAB Code).
-# If the time seires have been extracted, skip the Section 1 and go to the Section 2 & 3.
+# If the time seires have been extracted, skip Section 1 and go to Section 2 & 3.
 #
 # Version 1.0 
 # 12-December-2020

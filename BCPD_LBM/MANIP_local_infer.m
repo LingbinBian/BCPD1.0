@@ -1,10 +1,10 @@
-% Local inference for discrete states of community architectures.
+% Local inference for discrete states of community structures.
 %
 % Set up parameters:
 % W: half of window size
-% n_s: standard deviation of noise with respect to SNR
+% n_s: standard deviation of noise
 % local_t: a vector of time points corresponding to local minima or maxima
-% K_min: a vector of model selection
+% K_min: a vector of K
 %
 %
 % Version 1.0
@@ -13,12 +13,11 @@
 % -------------------------------------------------------------------------
 clear
 clc
-
+close all
 % load data
-datatype=0;   % 1: real data, 0: synthetic data
+datatype=1;   % 1: real data, 0: synthetic data
 
-if datatype==1
-   
+if datatype==1   
     session_n=2;
     
     subjects=load('subject.txt');
@@ -30,21 +29,26 @@ if datatype==1
         load('Local_inference_real_LR/label_real.mat')       
         grouplabel_LR=esti_grouplabel;
        
-        local_t=[41,77,99,139,175,209,236,275,305,334,376];
+        local_t=[49,77,99,139,175,209,236,275,305,334,376];
     end
    % K_min=[7,7,7,7,7,7,7,7,7,7,7];  % model selection
     K_min=[6,6,6,6,6,6,6,6,6,6,6];  % model selection
     W=10;
     n_s=' ';
-    
+    vari=' ';
+    hrf_ind=' ';
     
 elseif datatype==0
     subjects=load('synthetic_id.txt');    
-    n_s=0.3162;  % sigma of noise 
-      local_t=[36,67,91,116,147]; % n_s: 0.3162 (SNR=10dB)
+    hrf_ind=1;
+    vari=0;
+    n_s=0.5623;  % sigma of noise 
+    %  local_t=[36,67,91,116,147]; % n_s: 0.3162 (SNR=10dB)
     %  local_t=[36,66,91,116,146]; % n_s: 0.5623 (SNR=5dB)
+    local_t=[44,74,98,130,154];  % n_s: 0.5623 with hrf
     %  local_t=[36,66,92,116,146]; % n_s: 1 (SNR=0dB)    
-    K_min=[4,5,3,4,4];  % model selection
+   % K_min=[4,5,3,4,4];  % model selection 0.5623
+    K_min=[4,5,3,5,4];  % model selection 0.5623 with hrf
     W=10;    
     session_n=' ';
 end
@@ -67,7 +71,7 @@ vector_compare=zeros(N,2);
 for s=1:N_subj
     fprintf('Adjacency of subject: %d\n',s)
     subid=num2str(subjects(s));
-    [group_adj{s,1},true_latent,K_seg]=local_adj(datatype,subid,session_n,n_s,local_t,K_min,W);
+    [group_adj{s,1},true_latent,K_seg]=local_adj(datatype,subid,session_n,n_s,local_t,K_min,W,vari,hrf_ind);
 end
 
 adj_mean=zeros(N_subj,1);
@@ -148,12 +152,17 @@ if datatype==0
 figure  
 for t=1:L_localmin
     subplot(1,L_localmin,t)
-    visual_labels(label_compare{:,t}(:,2),K_seg)
+    visual_labels(label_compare{:,t}(:,2),K_min)
     title('Estimation','fontsize',16)
 end
-set(gcf,'unit','normalized','position',[0.3,0.2,0.45,0.38]);
 
-saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Labels_synthetic.fig'])
+set(gcf,'unit','normalized','position',[0.3,0.2,0.43,0.5]);
+if hrf_ind==0
+    saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Labels_synthetic.fig'])
+elseif hrf_ind==1
+    saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'_hrf/Labels_synthetic.fig'])
+end
+
 
 figure
 for t=1:L_localmin
@@ -161,9 +170,14 @@ for t=1:L_localmin
     visual_labels(label_compare{:,t}(:,1),K_seg)
     title('True','fontsize',16)
 end
-set(gcf,'unit','normalized','position',[0.3,0.2,0.45,0.38]);
+set(gcf,'unit','normalized','position',[0.3,0.2,0.43,0.5]);
 % saveas(gcf,'Local_inference_synthetic/Labels_true.fig')
-saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Labels_true.fig'])
+if hrf_ind==0
+    saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Labels_true.fig'])
+elseif hrf_ind==1
+    saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'_hrf/Labels_true.fig'])
+    
+end
 end
 
 % Visulization: estimation of the block mean
@@ -188,8 +202,13 @@ if datatype==1
    end
    
 elseif datatype==0
-   set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
-   saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Mean_synthetic.fig'])
+   if hrf_ind==0
+       set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
+       saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Mean_synthetic.fig'])
+   elseif hrf_ind==1
+       set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
+       saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'_hrf/Mean_synthetic.fig'])
+   end
 end
 
 % Visulization: estimation of the block variance
@@ -213,8 +232,13 @@ if datatype==1
       saveas(gcf,'Local_inference_real_RL/Variance_real.svg')
    end
 elseif datatype==0
-   set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
-   saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Variance_synthetic.fig'])
+    if hrf_ind==0
+       set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
+       saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'/Variance_synthetic.fig'])
+    elseif hrf_ind==1
+       set(gcf,'unit','normalized','position',[0.3,0.2,0.5,0.4]);
+       saveas(gcf,['Local_inference_synthetic/','n',num2str(n_s),'_hrf/Variance_synthetic.fig'])
+    end
 end
 
 % Save inference results to the folder
@@ -233,8 +257,13 @@ if datatype==1
     end
         
 elseif datatype==0
-    Localinference_path=fullfile(data_path,['Local_inference_synthetic/','n',num2str(n_s),'/localinference_synthetic']);
-    save(Localinference_path);
+    if hrf_ind==0
+        Localinference_path=fullfile(data_path,['Local_inference_synthetic/','n',num2str(n_s),'/localinference_synthetic']);
+        save(Localinference_path);
+    elseif hrf_ind==1
+        Localinference_path=fullfile(data_path,['Local_inference_synthetic/','n',num2str(n_s),'_hrf/localinference_synthetic']);
+        save(Localinference_path);
+    end
 end
 
 

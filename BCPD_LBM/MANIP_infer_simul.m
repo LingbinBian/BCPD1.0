@@ -10,19 +10,19 @@ if isempty(data_path), data_path = pwd; end
 subjects=load('synthetic_id.txt');
 % ------------------------------------------------------------------------
 
-global_K=3;
+global_K=6;
 W=10;   % half window size
 S=50;   % replication number
 
 %n_s=0.3162;  % 10dB
 %n_s=0.5623;  % 5dB
-%n_s=1;  % 0dB
+n_s=1;  % 0dB
 %n_s=1.7783;  % -5dB
-n_s=3.1623;  % -5dB
-
-
+%n_s=3.1623;  % -5dB
+vari=10;
+hrf_ind=0;
 for i=1:100
     subid=num2str(subjects(i));
     fprintf('subject ID = %s\n',subid);
-    infer_simul(subid,W,S,global_K,n_s);
+    infer_simul(subid,W,S,global_K,n_s,vari,hrf_ind);
 end

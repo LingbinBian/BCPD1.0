@@ -10,26 +10,31 @@ close all
 datatype=1;
 
 if datatype==0
+    vari=0;
+    hrf_ind=1;
     n_s=0.5623;
     %  localmin_t=[36,67,91,116,147]; % n_s: 0.3162
-      localmin_t=[36,66,91,116,146]; % n_s: 0.5623
+    % localmin_t=[36,66,91,116,146]; % n_s: 0.5623
+      localmin_t=[44,74,98,130,154];  % n_s: 0.5623 with hrf
     %  localmin_t=[36,66,92,116,146]; % n_s: 1    
     subjects=load('synthetic_id.txt');
     W=9;  % half of window size
     K_min=[4,5,3,5,4];
-   
+    session_n=' ';
 elseif datatype==1
     session_n=2;
     if session_n==1
         localmin_t=[41,76,140,175,239,278,334,375];
     end
     if session_n==2
-        localmin_t=[41,77,139,175,236,275,334,376];
+        localmin_t=[49,77,139,175,236,275,334,376];
     end
     subjects=load('subject.txt');
     W=15;  % half of window size
     K_min=[3,3,3,3,3,3,3,3,3,3,3];  % select K
     n_s=' ';
+    vari=' ';
+    hrf_ind=' ';
 end
 
 local_fit=zeros(1,16);  
@@ -48,7 +53,7 @@ ave_adj=cell(1,L_localmin);  % averaged adjacency matrix
 for s=1:N_subj
     fprintf('Adjacency of subject: %d\n',s)
     subid=num2str(subjects(s));
-    [group_adj{s,1},true_latent]=local_adj(datatype,subid,session_n,n_s,localmin_t,K_min,W);
+    [group_adj{s,1},true_latent]=local_adj(datatype,subid,session_n,n_s,localmin_t,K_min,W,vari,hrf_ind);
 end
 
 adj_mean=zeros(N_subj,1);
@@ -110,8 +115,13 @@ if datatype==1
     end
 end
 if datatype==0
-Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'/localfit_aveadj']);
-save(Localfit_path);
+    if hrf_ind==0
+        Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'/localfit_aveadj']);
+        save(Localfit_path);
+    elseif hrf_ind==1
+        Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'_hrf/localfit_aveadj']);
+        save(Localfit_path);
+    end
 end
 
 

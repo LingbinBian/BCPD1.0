@@ -21,15 +21,27 @@ cd 'Global_fitting_real';
 
 open('tfMRI_2_K3_W22.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W22.png'])
+
+open('tfMRI_2_K3_W22FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_K3_W22FP_removed.png'])
  
 open('tfMRI_2_K3_W26.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W26.png'])
 
+open('tfMRI_2_K3_W26FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_K3_W26FP_removed.png'])
+
 open('tfMRI_2_K3_W30.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W30.png'])
 
+open('tfMRI_2_K3_W30FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_K3_W30FP_removed.png'])
+
 open('tfMRI_2_K3_W34.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W34.png'])
+
+open('tfMRI_2_K3_W34FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_K3_W34FP_removed.png'])
  
 % open('tfMRI_K4_W30.fig')
 % saveas(gcf,[pic_path,'tfMRI_K4_W30.png'])
@@ -61,8 +73,8 @@ close all
 sp_level='sparsity_30';
 cd 'Local_inference_real_RL/sparsity_30'
 
-open('network_t41.fig')
-saveas(gcf,['../',pic_path,sp_level,'/','network_t41.jpeg'])
+open('network_t49.fig')
+saveas(gcf,['../',pic_path,sp_level,'/','network_t49.jpeg'])
 
 open('network_t77.fig')
 saveas(gcf,['../',pic_path,sp_level,'/','network_t77.jpeg'])
@@ -96,8 +108,8 @@ saveas(gcf,['../',pic_path,sp_level,'/','network_t376.jpeg'])
 
 close all
 % save cricos figures
-cd 'circos_configuration/brain/circos_t41/'
-copyfile('circos.png',['../../../../',pic_path,sp_level,'/circos_t41.png'])
+cd 'circos_configuration/brain/circos_t49/'
+copyfile('circos.png',['../../../../',pic_path,sp_level,'/circos_t49.png'])
 cd ../../..
 
 cd 'circos_configuration/brain/circos_t77/'

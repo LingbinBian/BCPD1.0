@@ -14,12 +14,20 @@ N=35; % the number of nodes
 K_seg=[3 4 5 3 5 4 3]; % the number of communities of data segments
 %n_s=0.3162;  % 10dB
 %n_s=0.5623;  % 5dB
-%n_s=1;  % 0dB
+n_s=1;  % 0dB
 %n_s=1.7783;  % -5dB
-n_s=3.1623;  % -5dB
+%n_s=3.1623;  % -5dB
+ind=1;  % 1: vari and hrf, 2: only SNR
 
 changepoints=[20 50 80 100 130 160];
-generateSignal(T,N,changepoints,K_seg,n_s);
+vari=10;  % degree of variation of community structure
+hrf_ind=0;  % 1: apply a hrf, 0: do not apply a hrf
+
+if ind==0
+   generateSignal(T,N,changepoints,K_seg,n_s);
+else
+   generateSignal_subjvari_hrf(T,N,changepoints,K_seg,n_s,vari,hrf_ind);    
+end
 
 %--------------------------------------------------------------------------
 % Plot network time series 

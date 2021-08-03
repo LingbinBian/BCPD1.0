@@ -24,12 +24,12 @@ spar_level=30;
 circos_node=readtable(['sparsity_',num2str(spar_level),'/circos_node_temp.txt']);
 
 for t=1:L_localmin
-     node_txt(circos_node,esti_grouplabel,localmin_t,t,spar_level)
+     node_txt(circos_node,esti_grouplabel,local_t,t,spar_level)
 end
 
 % connectivity table
 for t=1:L_localmin
-    connectivity_txt(ave_adj,esti_grouplabel,localmin_t,t,spar_level,session_n)
+    connectivity_txt(ave_adj,esti_grouplabel,local_t,t,spar_level,session_n)
 end
 cd ..
 

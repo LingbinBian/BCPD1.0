@@ -14,15 +14,9 @@ function [esti_blockmean,esti_blockvariance]=local_para(esti_grouplabel,adj,loca
 % 23-Feb-2020
 % Copyright (c) 2020, Lingbin Bian
 % -------------------------------------------------------------------------
-% load data
-% if datatype==1
-%     Timeseries=load_realts(subj,session_n,K_min);
-% elseif datatype==0
-%     Timeseries=load_simults(subj);
-% end
+
 
 N=35;
-  % replication number
 L_localmin=length(localmin_t);   % number of states
 
 

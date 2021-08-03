@@ -1,4 +1,4 @@
-function [] = infer_simul(subid,W,S,K,n_s)
+function [] = infer_simul(subid,W,S,K,n_s,vari,hrf_ind)
 % Inference of synthetic data.
 % Input: simul_id: the simulated data id, eg. '1001'
 %        W: window size
@@ -10,7 +10,7 @@ function [] = infer_simul(subid,W,S,K,n_s)
 % -------------------------------------------------------------------------
 
 % Load dataset
-Timeseries=load_simults(subid,n_s);
+Timeseries=load_simults(subid,n_s,vari,hrf_ind);
 
 % Adjacency matrix cell array (observations) with respect to time course
 [AdjaCell,netpara]=adjacencyCellArray(Timeseries,W,K);
@@ -25,7 +25,13 @@ cumenergy=cumdis(discindex,netpara);
 Inference_path = fileparts(mfilename('fullpath'));
 if isempty(Inference_path), Inference_path = pwd; end
 
-Inference_LR=fullfile(Inference_path,'Global_fitting_synthetic',['infer_synthetic','_K',num2str(K),'_W',num2str(2*W),'_n',num2str(n_s)],subid,'infer_simul');
+
+    if hrf_ind==1
+        Inference_LR=fullfile(Inference_path,'Global_fitting_synthetic',['infer_synthetic_subvari_hrf','_K',num2str(K),'_W',num2str(2*W),'_n',num2str(n_s),'_v',num2str(vari)],subid,'infer_simul');
+    else
+        Inference_LR=fullfile(Inference_path,'Global_fitting_synthetic',['infer_synthetic_subvari','_K',num2str(K),'_W',num2str(2*W),'_n',num2str(n_s),'_v',num2str(vari)],subid,'infer_simul');
+    end
+
 save(Inference_LR,'cumenergy','K','W');
            
 end

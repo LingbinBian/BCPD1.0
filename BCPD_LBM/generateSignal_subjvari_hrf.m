@@ -1,5 +1,6 @@
-function [] = generateSignal(T,N,changepoint,K_seg,n_s)
-% This function generates the Gaussian time series with true change points.           
+function [] = generateSignal_subjvari_hrf(T,N,changepoint,K_seg,n_s,vari,hrf_ind)
+% This function generates the Gaussian time series with inter-individual variations 
+% and the time series is convloved with the haemodynamic response function (hrf).           
 %   Syntax:
 %      default:
 %      [Timeseries]=generateSignal()
@@ -29,6 +30,9 @@ end
 
 checkinput()
 
+N_sub=100;
+sig_hrf=spm_hrf(0.72,[6 16 1 1 6 0 32],16);
+
 Num_seg=length(changepoint)+1;   % number of segments
 
 % setup segment latent labels
@@ -36,22 +40,39 @@ latent_seg=zeros(N,Num_seg);
 for seg=1:Num_seg
     latent_seg(:,seg)=latent_generator(N,K_seg(seg));
 end
-% setup covariance parameters
-ab=zeros(2,Num_seg);
-for seg=1:Num_seg
-     ab(1,seg)=0.8+0.2*rand();
-     ab(2,seg)=0.2*rand();
+ab_seg=ab_generator(Num_seg);
+
+
+latent_seg_sub=cell(N_sub,1);
+ab_sub=cell(N_sub,1);
+if vari==0   % if there is no inter-subject variation about labels
+    for n=1:N_sub
+        latent_seg_sub{n,1}=latent_seg;
+        ab_sub{n,1}=ab_seg;
+    end
+    
+else   % if there is inter-subject variation about labels
+
+    for n=1:N_sub
+        latent_seg_sub{n,1}=latent_subjvari(N,Num_seg,latent_seg,K_seg,vari);
+        ab_sub{n,1}=ab_generator(Num_seg);
+    end
 end
+
 
 s_id=load('synthetic_id.txt');
 
 data_path = fileparts(mfilename('fullpath'));
 if isempty(data_path), data_path = pwd; end
 
-for n=1:100
-    subdir=fullfile(data_path,['Data/synthetic','_n',num2str(n_s)],num2str(s_id(n)));
+for n=1:N_sub
+    if hrf_ind==1
+        subdir=fullfile(data_path,['Data/synthetic_subvari_hrf','_n',num2str(n_s),'_v',num2str(vari)],num2str(s_id(n)));
+    else
+        subdir=fullfile(data_path,['Data/synthetic_subvari','_n',num2str(n_s),'_v',num2str(vari)],num2str(s_id(n)));
+    end    
     cd(subdir);
-    Timeseries=single_signal(changepoint,latent_seg,ab,Num_seg);
+    Timeseries=single_signal(changepoint,latent_seg_sub{n,1},ab_sub{n,1},Num_seg,sig_hrf,hrf_ind);    
     filename='timeseries.mat';
     save(filename);
     cd ../../..
@@ -60,9 +81,43 @@ end
 
 
 % Nested functions---------------------------------------------------------
-    function [Timeseries]=single_signal(changepoint,latent_seg,ab,Num_seg)
+% Inter-individual variation for latent label vector
+
+    function [z_subj]=latent_subjvari(N,N_seg,latent_seg,K_seg,d_vari)
+        % N: number of nodes
+        % N_seg: number of segments
+        % latent_seg: segments of latent labels
+        % K_seg: segments of number of communities
+        % d_vari: number of nodes that are different between subjects
+        
+        z_subj=zeros(N,N_seg);
+        for seg_n=1:N_seg
+            z_seg=latent_seg(:,seg_n);
+            N_varid=randsample(1:N,d_vari);
+            for i=1:d_vari
+                z_seg(N_varid(i))=randsample(1:K_seg(seg_n),1);
+            end
+            z_subj(:,seg_n)=z_seg;               
+        end
+        
+    end
+% Inter-individual variation for connectivity
+
+    function [ab]=ab_generator(Num_seg)
+        % setup covariance parameters
+        ab=zeros(2,Num_seg);
+        for seg_n=1:Num_seg
+             ab(1,seg_n)=0.8+0.2*rand();
+             ab(2,seg_n)=0.2*rand();
+        end
+    end
+
+% Generating time series
+    function [Timeseries]=single_signal(changepoint,latent_seg,ab,Num_seg,sig_hrf,hrf_ind)
         % setup the segment signal
+        
         signal=zeros(N,T);
+        signal_delay=zeros(N,T+length(sig_hrf)-1);
         t_ini=1;
         for s=1:Num_seg
             if t_ini>max(changepoint)
@@ -78,9 +133,18 @@ end
             end
             t_ini=t_end+1;         
         end
+        
+        if hrf_ind==1
+            for i=1:N
+                signal_delay(i,:)=conv(signal(i,:),sig_hrf);
+            end
+        else
+            signal_delay=signal;
+        end
+        
 
         Timeseries=struct('name','Gaussian',...
-                          'signal',signal,...
+                          'signal',signal_delay,...
                           'changepoint_truth',changepoint,...
                           'LatentLabels',latent_seg,...
                           'T',T,...
@@ -129,6 +193,8 @@ end
         signal=mvnrnd(mean',Covar)';         
     end
 % End of Gaussian data generator-------------------------------------------
+
+
 
 end
 

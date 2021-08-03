@@ -44,20 +44,38 @@ cd 'Global_fitting_real';
 open('tfMRI_1_K3_W22.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W22.png'])
  
+open('tfMRI_1_K3_W22FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K3_W22FP_removed.png'])
+
 open('tfMRI_1_K3_W26.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W26.png'])
+
+open('tfMRI_1_K3_W26FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K3_W26FP_removed.png'])
 
 open('tfMRI_1_K3_W30.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W30.png'])
 
+open('tfMRI_1_K3_W30FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K3_W30FP_removed.png'])
+
 open('tfMRI_1_K3_W34.fig')
 saveas(gcf,[pic_path,'tfMRI_K3_W34.png'])
+
+open('tfMRI_1_K3_W34FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K3_W34FP_removed.png'])
  
 open('tfMRI_1_K4_W30.fig')
 saveas(gcf,[pic_path,'tfMRI_K4_W30.png'])
+
+open('tfMRI_1_K4_W30FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K4_W30FP_removed.png'])
  
 open('tfMRI_1_K5_W30.fig')
 saveas(gcf,[pic_path,'tfMRI_K5_W30.png'])
+
+open('tfMRI_1_K5_W30FP_removed.fig')
+saveas(gcf,[pic_path,'tfMRI_1_K5_W30FP_removed.png'])
 cd ..
 
 % save local fitting figures
@@ -68,7 +86,7 @@ saveas(gcf,[pic_path,'localfit_real.png'])
 cd ..
 
 
-cd 'Local_fitting_synthetic/n0.5623';
+cd 'Local_fitting_synthetic/n0.5623_withouthrf';
 open('localfit_synthetic.fig')
 saveas(gcf,['../',pic_path,'localfit_synthetic_n0_5623.png'])
 cd ../..

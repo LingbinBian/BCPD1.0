@@ -15,21 +15,28 @@ if datatype==1
         localmin_t=[41,76,140,175,239,278,334,375];
     end
     if session_n==2
-        localmin_t=[41,77,139,175,236,275,334,376];
+        localmin_t=[49,77,139,175,236,275,334,376];
     end    
 end
 if datatype==0
-    n_s=0.3162;
-    localmin_t=[36,67,91,116,147]; % n_s: 0.3162
+    hrf_ind=1;
+    n_s=0.5623;
+    %localmin_t=[36,67,91,116,147]; % n_s: 0.3162
      % localmin_t=[36,66,91,116,146]; % n_s: 0.5623
-      % localmin_t=[36,66,92,116,146]; % n_s: 1       
+     localmin_t=[44,74,98,130,154];  % n_s: 0.5623 with hrf
+      % localmin_t=[36,66,92,116,146]; % n_s: 1    
+    
 end
 
 colorvector=[1,1,0;0.78,0.38,0.08;0,0,1;1,0,0;0,1,0;0,0.5,0;0.5,0.5,0;1,0.5,0.5];
 K_trial=3:18;
 
 if datatype==0
-    load(['Local_fitting_synthetic/n',num2str(n_s),'/localfit_aveadj.mat'])
+    if hrf_ind==0
+        load(['Local_fitting_synthetic/n',num2str(n_s),'/localfit_aveadj.mat'])
+    elseif hrf_ind==1
+        load(['Local_fitting_synthetic/n',num2str(n_s),'_hrf/localfit_aveadj.mat'])
+    end
 end
 if datatype==1
     if session_n==1
@@ -59,6 +66,7 @@ if datatype==0
 end
 
 if datatype==1
+    if session_n==1
     legend('2-back tool', ...
        '0-back body', ...
        '2-back face', ... 
@@ -67,6 +75,18 @@ if datatype==1
        '2-back place', ...
        '0-back face', ...
        '0-back place')   
+    elseif session_n==2
+    legend('2-back body', ...
+       '0-back face', ...
+       '2-back tool', ... 
+       '0-back body', ... 
+       '0-back place', ...
+       '2-back face', ...
+       '0-back tool', ...
+       '2-back place')
+            
+    end
+        
 end
 % if datatype==1
 %     legend(['t=',num2str(localmin_t(1))], ...
@@ -99,7 +119,12 @@ if datatype==1
 end
     
 if datatype==0
-    saveas(gcf,['Local_fitting_synthetic/n',num2str(n_s),'/localfit_synthetic.fig'])
+    if hrf_ind==0
+        saveas(gcf,['Local_fitting_synthetic/n',num2str(n_s),'/localfit_synthetic.fig'])
+    elseif hrf_ind==1
+        saveas(gcf,['Local_fitting_synthetic/n',num2str(n_s),'_hrf/localfit_synthetic.fig'])
+    end
+        
 end
 
 

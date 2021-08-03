@@ -18,13 +18,13 @@ clc
 data_path = fileparts(mfilename('fullpath'));
 if isempty(data_path), data_path = pwd; end
 subjects=load('subject.txt');
-session_n=1;
+session_n=2;
 N_subj=100;
 T=405;
-K=5;
-W=15;
+K=3;
+W=11;
 W_s=5;
-
+thre=9;  % The threshold for remove false positives
 % -------------------------------------------------------------------------
 % plot cumulative discrepancy energy
 time_cum=zeros(1,T);
@@ -39,7 +39,7 @@ if session_n==2
 end
 
 changestimuli=round(changestimuli_all./0.72);  % frames of experiment desgin, onset, duration (25s+2.5s)
-changestimuli
+
 cde_matrix=zeros(N_subj,T);
 
 figure
@@ -82,6 +82,7 @@ xlabel('Time step','fontsize',16)
 ylabel('CDE','fontsize',16)
 % local maxima and minima of CDE
 Lmax = islocalmax(ave_cu);
+localmax_ave=[time_cum(Lmax);ave_cu(Lmax)];
 hold on
 % scatter(time_cum(Lmax),ave_cu(Lmax),40,'MarkerEdgeColor',[0 0 0],...
 %               'MarkerFaceColor',[1 0 0],...
@@ -91,6 +92,7 @@ scatter(time_cum(Lmax),ave_cu(Lmax),40,'MarkerEdgeColor',[0 0 0],...
               'LineWidth',1.5)
          
 Lmin = islocalmin(ave_cu);
+localmin_ave=[time_cum(Lmin);ave_cu(Lmin)];
 hold on
 % scatter(time_cum(Lmin),ave_cu(Lmin),40,'MarkerEdgeColor',[0 0 0],...
 %               'MarkerFaceColor',[0 0 1],...
@@ -102,35 +104,71 @@ set(gcf,'unit','centimeters','position',[6 10 14 10])
 set(gca,'Position',[.15 .15 .75 .75]);
 
 saveas(gcf,['Global_fitting_real/','tfMRI_',num2str(session_n),'_','K',num2str(K),'_','W',num2str(2*W),'.fig'])
-%--------------------------------------------------------------------------
-% plot posterior predictive discrepancy
-% figure
-% ppd_matrix=zeros(N_subj,405);
-% for i=1:N_subj
-%     subid=num2str(subjects(i));
-%     subdir_path=fullfile(data_path,'Inference/infer_tfMRI',subid,'inference_WM_LR');
-%     load(fullfile(subdir_path,'infer_LR.mat'));   
-%     ppd_matrix(i,:)=discindex;
-%     time_ppd=16:390;
-%     fprintf('ploting ppd, subject: %d\n',i)
-%     hold on
-%     scatter(time_ppd,discindex(time_ppd),5,'filled')
-%     alpha(0.6)   
-% end
-% ave_ppd=mean(ppd_matrix);
-% %median_ppd=median(ppd_matrix);
-% 
-% hold on
-% plot(time_ppd,ave_ppd(time_ppd),'Color',[0.25 0.25 0.25],'Linewidth',3.0)
-% %plot(time_ppd,median_ppd(time_ppd),'Color',[0 0 0],'Linewidth',3.0)
-% title('Group Posterior predictive discrepancy index','fontsize',14)
-% xlim([0, T]);% range of x
-% ylim([min(min((ppd_matrix(:,16:390)))), max(max(ppd_matrix(:,16:390)))]); % range of y
-% set(gca,'box','on')
+
+data_path = fileparts(mfilename('fullpath'));
+if isempty(data_path), data_path = pwd; end
+
+localextre_path=fullfile(data_path,['Global_fitting_real/','tfMRI_',num2str(session_n),'_K',num2str(K),'_W',num2str(2*W),'/localextrema']);
+save(localextre_path,'localmax_ave','localmin_ave');
+
+% -------------------------------------------------------------------------
+% Remove false positives (FP)
+storage=localextre_cleaning(localmax_ave,localmin_ave,thre);
+
+data_path = fileparts(mfilename('fullpath'));
+if isempty(data_path), data_path = pwd; end
+
+localextre_path=fullfile(data_path,'Global_fitting_real/tfMRI_2_K3_W30/localextrema_removed');
+save(localextre_path,'storage');
+
+L_removed=length(storage);
+t_removed=zeros(1,L_removed);
+localextre_removed=zeros(1,L_removed);
+for i=1:L_removed
+    t_removed(i)=storage{1,i}(1,1);
+    localextre_removed(i)=storage{1,i}(2,1);
+end
+Lmin = islocalmin(localextre_removed);
+Lmax = islocalmax(localextre_removed);
+figure
+
+for Num=1:length(changestimuli)
+   plot([changestimuli(Num),changestimuli(Num)],[min(min(cde_matrix(:,W+W_s+1:T-W-W_s))), max(max(cde_matrix(:,W+W_s+1:T-W-W_s)))],':','Color',[0.25 0.25 0.25],'LineWidth',2.0); 
+   hold on
+end
+
+hold on
+plot(time_cum(W+W_s+1:T-W-W_s),ave_cu(time_cum(W+W_s+1:T-W-W_s)),'Color',[0 0 0],'Linewidth',2.0)
+title(['K=',num2str(K),', ','W=',num2str(2*W),', ','W_{s}=',num2str(2*W_s),',',' FP removed'],'fontsize',16)
+xlim([0, T]); % range of x
+%ylim([min(min(cde_matrix(:,W+W_s+1:T-W-W_s))), max(max(cde_matrix(:,W+W_s+1:T-W-W_s)))]); % range of y
+
+ylim([2.4,3.0]); % range of y
+
+
+set(gca,'box','on')
 % set(gca,'fontsize',14)
-% xlabel('Time step','fontsize',14)
-% ylabel('DI','fontsize',14)
+set(gca, 'linewidth', 1.2, 'fontsize', 16, 'fontname', 'times')
+xlabel('Time step','fontsize',16)
+ylabel('CDE','fontsize',16)
 
+hold on
+% scatter(time_cum(Lmin),ave_cu(Lmin),40,'MarkerEdgeColor',[0 0 0],...
+%               'MarkerFaceColor',[0 0 1],...
+%               'LineWidth',1.5)
+scatter(t_removed(Lmax),localextre_removed(Lmax),40,'MarkerEdgeColor',[0 0 0],...
+              'MarkerFaceColor',[255, 70, 0]/255,...
+              'LineWidth',1.5)
 
+hold on
+scatter(t_removed(Lmin),localextre_removed(Lmin),40,'MarkerEdgeColor',[0 0 0],...
+              'MarkerFaceColor',[51, 161, 201]/255,...
+              'LineWidth',1.5)          
+          
+          
+set(gcf,'unit','centimeters','position',[6 10 14 6])
+set(gca,'Position',[.15 .3 .75 .5]);
+
+saveas(gcf,['Global_fitting_real/','tfMRI_',num2str(session_n),'_','K',num2str(K),'_','W',num2str(2*W),'FP_removed.fig'])
 
 

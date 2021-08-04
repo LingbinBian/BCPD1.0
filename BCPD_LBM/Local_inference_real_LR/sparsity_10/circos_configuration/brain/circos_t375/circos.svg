@@ -204,11 +204,11 @@
 <path d="M 2237.4,2044.7 L 2208.6,2023.1 2180.3,2001.0 2152.7,1978.5 2126.0,1955.8 2100.4,1932.9 2076.1,1909.9 2053.2,1886.9 2031.9,1863.9 2012.3,1841.1 1994.5,1818.4 1978.8,1796.0 1965.1,1774.0 1953.5,1752.3 1944.2,1731.0 1937.2,1710.2 1932.5,1690.0 1930.3,1670.3 1930.4,1651.2 1933.1,1632.8 1938.1,1615.1 1945.6,1598.0 1955.5,1581.7 1967.8,1566.2 1982.4,1551.4 1999.3,1537.4 2018.4,1524.2 2039.6,1511.9 2062.9,1500.3 2088.1,1489.6 2115.1,1479.7 2143.8,1470.6 2174.0,1462.3 2205.6,1454.8 2238.4,1448.0 2272.2,1442.0 2306.8,1436.8 2342.1,1432.2 2377.8,1428.3 2413.7,1425.1  " style="stroke-opacity: 1.000000; stroke-width: 5.0; stroke: rgb(107,174,214); fill: none"  />
 </g>
 <defs>
-<pattern id="vline" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="10" style="stroke:black;stroke-width:5" /></pattern>
 <pattern id="hline-sparse" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="10" y2="0" style="stroke:black;stroke-width:2" /></pattern>
-<pattern id="hline" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="10" y2="0" style="stroke:black;stroke-width:5" /></pattern>
 <pattern id="vline-sparse" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="10" style="stroke:black;stroke-width:2" /></pattern>
+<pattern id="hline" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="10" y2="0" style="stroke:black;stroke-width:5" /></pattern>
 <pattern id="checker" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="10" y2="0" style="stroke:black;stroke-width:2" /><line x1="0" y1="0" x2="0" y2="10" style="stroke:black;stroke-width:2" /></pattern>
 <pattern id="checker" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="10" y2="0" style="stroke:black;stroke-width:5" /><line x1="0" y1="0" x2="0" y2="10" style="stroke:black;stroke-width:4" /></pattern>
+<pattern id="vline" width="10" height="10" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="10" style="stroke:black;stroke-width:5" /></pattern>
 </defs>
 </svg>

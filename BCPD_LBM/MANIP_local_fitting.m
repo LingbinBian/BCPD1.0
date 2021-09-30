@@ -1,4 +1,4 @@
-% Calculate local fitting for group averaged adjacency matrix.
+% Calculate local fitting for group-averaged adjacency matrix.
 % 
 % Version 1.0
 % 8-Sep-2020
@@ -7,16 +7,35 @@
 clear
 clc
 close all
-datatype=1;
+datatype=0;
 
 if datatype==0
     vari=0;
     hrf_ind=1;
-    n_s=0.5623;
-    %  localmin_t=[36,67,91,116,147]; % n_s: 0.3162
-    % localmin_t=[36,66,91,116,146]; % n_s: 0.5623
-      localmin_t=[44,74,98,130,154];  % n_s: 0.5623 with hrf
-    %  localmin_t=[36,66,92,116,146]; % n_s: 1    
+    block=0;
+    n_s=1;
+    switch n_s
+        case 0.3162
+            if hrf_ind==0
+               localmin_t=[36,67,91,116,147]; % n_s=0.3162
+            elseif hrf_ind==1
+                if block==0
+                   localmin_t=[43,75,98,125,154]; % n_s=0.3162 with hrf
+                else
+                   localmin_t=[35,65,90,115,145];  % block-based local state time points
+                end
+            end
+        case 0.5623
+            if hrf_ind==0
+               localmin_t=[36,66,91,116,146]; % n_s=0.5623
+            elseif hrf_ind==1
+                if block==0
+                   localmin_t=[44,74,98,130,154]; % n_s=0.5623 with hrf
+                else
+                   localmin_t=[35,65,90,115,145];  % block-based local state time points
+                end
+            end
+    end
     subjects=load('synthetic_id.txt');
     W=9;  % half of window size
     K_min=[4,5,3,5,4];
@@ -119,8 +138,13 @@ if datatype==0
         Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'/localfit_aveadj']);
         save(Localfit_path);
     elseif hrf_ind==1
-        Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'_hrf/localfit_aveadj']);
-        save(Localfit_path);
+        if block==0
+            Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'_hrf/localfit_aveadj']);
+            save(Localfit_path);
+        elseif block==1
+            Localfit_path=fullfile(Localfit_path,['Local_fitting_synthetic/n',num2str(n_s),'_hrf_block/localfit_aveadj']);
+            save(Localfit_path);
+        end
     end
 end
 

@@ -6,7 +6,7 @@
 # Copyright (c) 2020, Lingbin Bian
 
 
-# Section 1: Data set download and GLM analysis
+# Section 1: Data set downloading and GLM analysis
 
 1. Create an empty folder named 'tfMRI_Data_HCP' under a local directory. 
    Under the directory 'tfMRI_Data_HCP': (1) Download the preprocessed working memory tfMRI data from: https://www.humanconnectome.org/.
@@ -16,7 +16,7 @@
    
 3. Copy all of the design files under 'Shell_script_control/Design_fsf' to the directory 'subjects'. 
    
-   Under 'Shell_script_control', launch tfMRI_registration.sh; after finish running the Feat of registration only, launch tfMRI_copy_reg.sh   
+   Under 'Shell_script_control', launch tfMRI_registration.sh; after finishing running the Feat of registration only, launch tfMRI_copy_reg.sh   
    (The 1st-level glm analysis results without registration will lack the 'reg' folder under .feat directory, 
     we generate the 'reg' folder by applying registration seperately and copy 'reg' to the .feat directory in the 1st-level analysis).
 
@@ -34,7 +34,7 @@
 7. Create a table via modifying the z-MAX table shown as in 'Shell_script_control/Imax_zstat1_std_coordinates.txt' 
    (the voxel coordinates are obtained from fsleyes).
 
-8. Under 'Shell_script_control', launch readtable.sh to creat the 6mm masks correponding to the coordinates of the regions.
+8. Under 'Shell_script_control', launch readtable.sh to create the 6mm masks correponding to the coordinates of the regions.
 
 9. Under 'Shell_script_control', launch extract_regions.sh to extract the time seires and store them under the directory 'tfMRI_Data_HCP/data_timeseries'.
    (The time series of the regions of individual subjects are stored in the directory of subject id, one .txt file with region name for one brain region,

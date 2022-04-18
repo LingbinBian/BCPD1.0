@@ -27,7 +27,7 @@
     you can add any COPEs of interest in 2nd-level design settings).
 
 6. The 3rd-level (group-level) analysis is run manually. For a specific contrast, open Feat by 'Feat &' or 'Feat_gui &' on MAC, load Design_3rd_level.fsf.
-   Click the button Select cope images and click paste in the opend window. 
+   Click the button, select cope images, and click paste in the opened window. 
    Then launch list_3l_inputdir.sh to create a list of directories and copy them to the opened window 
    (you should modify the COPEs of interest in list_3l_inputdir.sh).
 

@@ -1,4 +1,4 @@
-# This is a pipeline for tfMRI GLM analysis (FSL, shell), Bayesian change-point detection and brain state estimation (MATLAB Code).
+# This is a pipeline for tfMRI GLM analysis (FSL, shell), Bayesian change-point detection, and brain state estimation (MATLAB Code).
 # If the time seires have been extracted, skip Section 1 and go to Section 2 & 3.
 #
 # Version 1.0 
@@ -6,7 +6,7 @@
 # Copyright (c) 2020, Lingbin Bian
 
 
-# Section 1: Data set downloading and GLM analysis
+# Section 1: Dataset download and GLM analysis
 
 1. Create an empty folder named 'tfMRI_Data_HCP' under a local directory. 
    Under the directory 'tfMRI_Data_HCP': (1) Download the preprocessed working memory tfMRI data from: https://www.humanconnectome.org/.
@@ -26,7 +26,7 @@
    (running 2nd-level analysis, NOTE that in the Design folder, COPE12 and 13 are analysed separately,
     you can add any COPEs of interest in 2nd-level design settings).
 
-6. The 3rd-level (Group level) is run manually. For a specific contrast, open Feat by 'Feat &' or 'Feat_gui &' on MAC, load Design_3rd_level.fsf.
+6. The 3rd-level (group-level) analysis is run manually. For a specific contrast, open Feat by 'Feat &' or 'Feat_gui &' on MAC, load Design_3rd_level.fsf.
    Click the button Select cope images and click paste in the opend window. 
    Then launch list_3l_inputdir.sh to create a list of directories and copy them to the opened window 
    (you should modify the COPEs of interest in list_3l_inputdir.sh).

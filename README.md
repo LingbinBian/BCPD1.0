@@ -28,7 +28,7 @@
 
 6. The 3rd-level (group-level) analysis is run manually. For a specific contrast, open Feat by 'Feat &' or 'Feat_gui &' on MAC, load Design_3rd_level.fsf.
    Click the button, select cope images, and click paste in the opened window. 
-   Then launch list_3l_inputdir.sh to create a list of directories and copy them to the opened window 
+   Then launch list_3l_inputdir.sh to create a list of directories and copy them to the opened window (copy: command c, paste: control y)
    (you should modify the COPEs of interest in list_3l_inputdir.sh).
 
 7. Create a table via modifying the z-MAX table shown as in 'Shell_script_control/Imax_zstat1_std_coordinates.txt' 
